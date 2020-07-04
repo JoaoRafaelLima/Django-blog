@@ -5,12 +5,14 @@
 {% block content %}
 
 <ul>
-    {% for title in posts_list %}
+    {% for post in posts_list %}
     
     <li>
         <div class="post-title-container">
-            <a style="text-decoration: none;" href="/post/{{ title.id }}">
-                <span class="post-title">{{ title.title }}</span>
+            <a style="text-decoration: none;" href="/post/{{post.id}}">
+                <span class="post-title">
+                    #{{ post.id }} {{ post.title }}
+                </span>
             </a>
         </div>
         

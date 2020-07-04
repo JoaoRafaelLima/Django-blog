@@ -13,5 +13,5 @@ def  read_post(request, idp):
     return render(request, "posts/home.html", {"current_post": current_post})
 
 def list_posts(request):
-    posts_title = Post.objects.values('title', 'id')
-    return render(request, "posts/posts.html", {"posts_list": posts_title})
+    posts = Post.objects.values('title', 'id').order_by("-created_at")
+    return render(request, "posts/posts.html", {"posts_list": posts})

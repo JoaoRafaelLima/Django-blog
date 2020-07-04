@@ -23,7 +23,7 @@ body{
 
 /* Menu */
 .menu{
-    width: 40%;
+    width: 100%;
   
 }
 
@@ -32,7 +32,7 @@ body{
     width: 20%;
     padding-left: 4px; 
     padding-top: 10px;
-    
+    position: relative;
     height: 40px;
  
 }
@@ -41,7 +41,7 @@ body{
     width: 100%;
     height: 50px;
     color: #e9eded;
-    
+    font-size: 18px;
     padding-right: 10px;
     padding-left: 12px;
     padding-top:  10px;
@@ -52,9 +52,7 @@ body{
     border-bottom: 4px solid #b6b7ba;
 }
 
-a{
-    color: green;
-}
+
 /* Post title*/
 
 .post-title-container{
