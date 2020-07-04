@@ -4,36 +4,20 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Layout</title>
+    <title>{% block title %}{% endblock title %}</title>
     <link rel="stylesheet" type="text/css" media="screen" href="{% static 'style.css' %}" />
     
 </head>
 <body>
     <div class="nav">
         <ul class="menu" >
-            <li class="menu-item"><a class="menu-link" href="#">Home</a></li>
-            <li class="menu-item"><a class="menu-link" href="#">Posts</a></li>
-            <li class="menu-item"><a class="menu-link" href="#">About</a></li>
+            <li class="menu-item"><a class="menu-link" href="/">Home</a></li>
+            <li class="menu-item"><a class="menu-link" href="/posts">Posts</a></li>
+            <li class="menu-item"><a class="menu-link" href="#">Sobre</a></li>
         </ul>
     </div>
-    
-
-    <div class="post-title-container">
-        <span class="post-title">this is the title of your post </span>
-    </div>
-
-    <div class="post-content-container">
-        <div class="post-content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida vitae purus sit amet dapibus. Phasellus auctor ut mi quis tempus.</p>
-            <p>Curabitur sit amet vulputate lacus. Suspendisse rutrum massa lorem, at lobortis enim viverra eget. Praesent blandit quam euismod, luctus leo non,</p>
-            <p>rutrum urna. Vestibulum porttitor odio id velit egestas, id commodo mauris porttitor. Vestibulum pretium ullamcorper magna vel euismod. Mauris sodales,</p>
-            <p>lacus vitae dictum pellentesque, arcu lectus volutpat nulla, sit amet semper dolor lacus sed quam. Aenean tincidunt, erat et convallis commodo, mauris</p>
-            <p>tellus sollicitudin tortor, in ornare nulla diam ut arcu. Vivamus lacinia libero lectus, eu malesuada tortor mollis quis. Pellentesque facilisis sapien orci,</p>
-            <p>nec rutrum diam tincidunt vel. Nullam quis convallis felis. Donec vel fermentum risus. Ut sagittis feugiat justo, auctor hendrerit nisi consequat vitae.</p>
-            <p>Nulla sollicitudin pellentesque tellus sed pulvinar. Nullam nulla tortor, eleifend vel turpis mollis, hendrerit vulputate justo.</p>
-        </div>
-
-    </div>
+    {% block content %}
+    {% endblock content %}
 
     <div class="footer">
         <div class="footer-info">

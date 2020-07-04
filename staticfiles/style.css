@@ -52,7 +52,9 @@ body{
     border-bottom: 4px solid #b6b7ba;
 }
 
-
+a{
+    color: green;
+}
 /* Post title*/
 
 .post-title-container{
@@ -90,6 +92,9 @@ body{
     margin-top: 10px;
     color: #373a3e;
 }
+
+/* listagem de posts */
+
 
 /* footer */
 .footer{

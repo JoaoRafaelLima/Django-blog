@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Home page{% endblock title %}
+
+{% block content %}
+
+
+<div class="post-title-container">
+    <span class="post-title">{{ current_post.title }}</span>
+</div>
+
+<div class="post-content-container">
+    <div class="post-content">
+        <p>{{ current_post.content }}</p>
+        
+    </div>
+
+</div>
+{% endblock content %}
