@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>menu responsivo</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }    
+        body{
+            background-color: #eee;
+        }
+        nav{
+      
+            position: absolute;
+            width:100% !important;
+            background-color: #232626;
+            border: 2px rgba(00, 00, 00, 0.1);
+            margin-bottom: 20px;
+            box-shadow:0 0 1em #4d4d4d , 0 0 1em #808080;
+            font-size: 22px;
+            display: flex;
+            height: 50px;
+            justify-content: space-between;
+            margin-bottom: 100px;
+        }
+        .menu{
+            list-style: none;
+            display: flex;
+            height: 50px;
+            padding: 0px;
+            margin: 0px;
+            align-items: center;
+          
+        }
+        .menu-item{
+            display: inline-block;
+            padding: 13px 5px;
+        }
+        .item-link{
+            text-decoration: none;
+            font-family: sans-serif;
+            height: 50px;
+            color: #e9eded;
+            padding-right: 10px;
+            padding-left: 12px;
+            padding-top:  10px;
+            padding-bottom:  9px;
+        }
+        .item-link:hover{
+            border-bottom: 4px solid #b6b7ba;
+        }
+
+        .open-nav{
+            display: none;
+            background: #b6b7ba;
+        
+        }
+        .line{
+            background: #232626;
+            width: 34px;
+            height: 4px;
+            margin-left: 3px;
+            margin-bottom: 8px;
+        }
+        .line-start{
+            margin-top: 6px;
+        }
+        
+        @media (max-width: 425px){
+            
+            .open-nav{
+            position: relative;
+            display: block;
+            width: 40px;
+            height: 40px;
+            margin-top: 5px;
+            margin-left: 5px;
+            background: #eee;
+            padding: 0px;
+            z-index: 1;
+            border: none;
+            }
+            .menu{
+                position: absolute;
+                flex-direction: column;
+                height: auto;
+                width: 100%;
+                top: 50px;
+               
+                z-index: -1;
+                padding: 0px;
+
+            }
+            
+            .menu-open{
+                z-index: 1;
+                background-color: #232626;
+                border-top: 1px solid #000;
+            }
+            
+        
+        }
+        .teste{
+            position: absolute;
+            margin-top: 70px;
+            width: 90%;
+            margin-left: 5%;
+            background: blue;
+            height: 600px; 
+        }
+        
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="menu" id="ml">
+            <li class="menu-item"><a class="item-link" href="">Home</a></li>
+            <li class="menu-item"><a class="item-link" href="">Posts</a></li>
+            <li class="menu-item"><a class="item-link" href="">Sobre</a></li>
+        </ul>
+        <button class="open-nav" onclick="show()">
+            <div class="line line-start"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </button>
+    </nav>
+    <div class="teste">
+
+    </div>
+    <script>
+    function show(e){
+        let menu = document.getElementById("ml");
+        menu.classList.toggle("menu-open");
+    }
+    
+    </script>
+    
+</body>
+</html>

@@ -5,7 +5,12 @@
 {% block content %}
 
 <div class="utils">
-    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+    <input type="text" id="search" class="form-control" placeholder="Pesquisar...">
+    <label id="select-order-label" for="select-order">Ordem</label>
+    <select name="" value="Decrecente" id="select-order" onchange="ordenar()">
+        <option value="crecente">Crecente</option>
+        <option value="decrecente">Decrecente</option>
+    </select>
 </div>
 <ul>
     {% for post in posts_list %}

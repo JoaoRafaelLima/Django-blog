@@ -14,8 +14,13 @@ def  read_post(request, idp):
     return render(request, "posts/home.html", {"current_post": current_post})
 
 def list_posts(request):
-    posts_list = Post.objects.values('title', 'id').order_by("-created_at")
-    paginator = Paginator(posts_list, 3)
+    search = request.GET.get("search")
+    if search:
+        posts_list = Post.objects.filter(title__icontains=search)
+    else:
+        posts_list = Post.objects.values('title', 'id').order_by("-created_at")
+    
+    paginator = Paginator(posts_list, 6)
     try:
         #page = int(request.GET.get('page', '1'))
         page = request.GET.get("page")

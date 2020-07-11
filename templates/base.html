@@ -6,19 +6,25 @@
     <meta charset="utf-8" />
     <title>{% block title %}{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'bootstrap.css' %}" />
-    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'newStyle.css' %}" />
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <script src="{% static 'main.js'%}"></script>
     <script src="https://kit.fontawesome.com/08150941cf.js" crossorigin="anonymous"></script>
 </head>
 <body>
     
-    <div class="nav">
-            <ul class="menu" >
-                <li class="menu-item"><a class="menu-link" href="/">Home</a></li>
-                <li class="menu-item"><a class="menu-link" href="/posts">Posts</a></li>
-                <li class="menu-item"><a class="menu-link" href="#">Sobre</a></li>
-            </ul>
-        </div>
+    <nav>
+        <ul class="menu" id="ml">
+            <li class="menu-item"><a class="item-link" href="/">Home</a></li>
+            <li class="menu-item"><a class="item-link" href="/posts">Posts</a></li>
+            <li class="menu-item"><a class="item-link" href="/">Sobre</a></li>
+        </ul>
+        <button class="open-nav" onclick="show()">
+            <div class="line line-start"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </button>
+    </nav>
+    <div class="container">
         {% block content %}
         {% endblock content %}
     
@@ -28,6 +34,6 @@
             </div>
         </div>
 
-   
+    </div>
 </body>
 </html>
