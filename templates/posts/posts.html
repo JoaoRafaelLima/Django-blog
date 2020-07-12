@@ -4,14 +4,15 @@
 
 {% block content %}
 
-<div class="utils">
+
+<div class="utils" onload="on_list_posts()">
     <input type="text" id="search" class="form-control" placeholder="Pesquisar...">
-    <label id="select-order-label" for="select-order">Ordem</label>
-    <select name="" value="Decrecente" id="select-order" onchange="ordenar()">
-        <option value="crecente">Crecente</option>
-        <option value="decrecente">Decrecente</option>
-    </select>
+    
+    {% if is_search %}
+        <h4 class="search-res">Resultados para "{{ is_search }}"</h4>
+    {% endif %}
 </div>
+
 <ul>
     {% for post in posts_list %}
     
@@ -47,7 +48,15 @@
         {% endif %}
         
     </span>
+    <script>
+        const input_search = document.getElementById("search");
+        input_search.addEventListener("keyup", function (event) {
+            var key = event.which || event.keyCode;
+            if (key == 13){
+                window.location.href = `http://127.0.0.1:8000/posts/?search=${input_search.value}`;
+            }
+        })
+        
+    </script>
 </div>
-
-
 {% endblock content %}

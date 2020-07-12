@@ -3,6 +3,3 @@ function show(){
     menu.classList.toggle("menu-open");
 }
 
-function ordenar(){
-    alert("fefefe");
-}

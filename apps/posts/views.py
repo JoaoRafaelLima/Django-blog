@@ -15,10 +15,15 @@ def  read_post(request, idp):
 
 def list_posts(request):
     search = request.GET.get("search")
+  
     if search:
+        is_search = search
         posts_list = Post.objects.filter(title__icontains=search)
     else:
+        is_search = None
         posts_list = Post.objects.values('title', 'id').order_by("-created_at")
+        
+            
     
     paginator = Paginator(posts_list, 6)
     try:
@@ -27,4 +32,7 @@ def list_posts(request):
     except ValueError:
         page = 1
     posts = paginator.get_page(page)
-    return render(request, "posts/posts.html", {"posts_list": posts})
+    return render(
+        request, "posts/posts.html",
+        {"posts_list": posts, "is_search": is_search}
+        )
