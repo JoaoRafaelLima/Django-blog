@@ -1,12 +1,44 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.core.paginator import Paginator
 from .models import Post
+from .forms import PostForm
 # Create your views here.
 
 
+def dashboard(request):
+    return render(request, "posts/dashboard.html")
+
+def editor(request, id_or_new):
+
+    if request.method == "POST":
+        if id_or_new == "new":
+            form = PostForm(request.POST)
+            post = form.save()
+        else:
+            idp = int(id_or_new)
+            post = get_object_or_404(Post, pk=idp)
+            post_update = PostForm(request.POST, instance=post)
+            post_update.save()
+
+        return redirect("/")
+    else:
+        if id_or_new == "new":
+            formGet = PostForm()
+            formGet.title = " "
+            formGet.content = " "
+            
+        else: 
+            idp = int(id_or_new)
+            post = get_object_or_404(Post, pk=idp)
+            formGet = PostForm(instance=post)
+
+        return render(request, "posts/editor.html", { "form": formGet, "arg": id_or_new})
+
 def home(request):
     current_post = Post.objects.all().order_by('-created_at')[0]
+    print("post current")
+
     return render(request, "posts/home.html", {"current_post": current_post})
 
 def  read_post(request, idp):

@@ -1,0 +1,169 @@
+
+{% extends 'base.html' %}
+{% block title %}Editor{% endblock title %}
+
+{% block content %}
+<div id="editor">
+    <ul class="menu-editor">
+        <li class="item-editor">
+            <button class="icon" onclick="add_italic()">
+                <i class="fas fa-italic"></i>
+                </button>
+            </li>
+            <li class="item-editor">
+                <button class="icon" onclick="add_bold()">
+                    <i class="fas fa-bold"></i>
+                </button>
+            </li>
+            <li class="item-editor">
+                <button class="icon" onclick="add_img()">
+                    <i class="fas fa-image"></i>
+                </button>
+            </li>
+            <li class="item-editor">
+                    <button class="icon" onclick="add_link()">
+                        <i class="fas fa-link"></i>
+                    </button>
+                </li>
+            <li class="item-editor">
+                <button class="icon icon-save" onclick="save()">
+                    <i class="fas fa-save"></i>
+                </button>
+            </li>
+            
+        </ul>
+    </div>
+    
+    <div class="tabs">
+        <div class="tabs-header">
+            <button id="tab-button-1" class="tab-button tab-button-active" onclick="switch_tab1()">
+                codigo
+            </button>
+            <button id="tab-button-2" class="tab-button" onclick="switch_tab2()">
+                preview
+            </button>
+        </div>
+        
+        <div class="tabs-body">
+            <div id="tab1" class="tab-show">
+                <form action="/editor/{{ arg }}" method="POST" id="editor-form">
+                    {% csrf_token %}
+                    <input class="edit-title" value="{{ form.title.value }}" name="title" id="title" type="text" placeholder="Title">
+                    <br>
+                    <textarea class="edit-content"  name="content" id="texto" cols="40" rows="10">{{form.content.value }}</textarea>
+                    <br>
+                    
+                
+                </form>  
+            </div>
+            <div id="tab2" class="tab-hiden">
+               <div class="prev">
+                    <span id="title_prev" class="post-title">
+                    </span>
+               </div>
+                <div class="prev">
+                    <p id="content_prev" class="post-content">
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        const title = document.getElementById("title");
+        const text = document.getElementById("texto");
+        let current_edit = undefined;
+       
+        const tab1 = document.getElementById("tab1");
+        const tab2 = document.getElementById("tab2");
+
+        const tbutton1 = document.getElementById("tab-button-1");
+        const tbutton2 = document.getElementById("tab-button-2");
+
+        title.addEventListener("click", function(){
+            current_edit = title;
+        })
+
+        text.addEventListener("click", function(){
+            current_edit = text;
+        })
+
+
+        function add_bold() {
+            current_edit.value += "* !";
+        }
+        function add_italic() {
+            current_edit.value += "% ;";
+        }
+        function add_img() {
+            current_edit.value += "& -)";
+        }
+        function add_link() {
+            current_edit.value += "@ | $";
+        }
+        function save(){
+            const form = document.getElementById("editor-form");
+            form.submit()
+        }
+        function toggle_buttons(){
+            tbutton1.classList.toggle("tab-button-active");
+            tbutton2.classList.toggle("tab-button-active");
+        }
+        function switch_tab1(){
+            tab2.classList.remove("tab-show");
+            tab2.classList.add("tab-hiden");
+
+            tab1.classList.remove("tab-hiden");
+            tab1.classList.add("tab-show");
+
+            toggle_buttons();
+        }
+        function switch_tab2(){
+            tab1.classList.remove("tab-show");
+            tab1.classList.add("tab-hiden");
+            
+            tab2.classList.remove("tab-hiden");
+            tab2.classList.add("tab-show");
+
+            toggle_buttons();
+            transform();
+        }
+
+        function transform(){
+           
+            let pseudoTags =[
+                "*", "!",
+                "%", ";",
+                "&", "-)",
+                "@", "|", "$"
+            ]
+            let htmlTags = [
+                "<b>", "</b>",
+                "<i>", "</i>",
+                "<figure class='img-post-1'><img class='img-t' src='", "' /></figure>",
+                "<a href='", "' target='_blank' class='link'>", "</a>"
+                ]
+            let newText = text.cloneNode(true);
+            for(let i = 0; i < pseudoTags.length; i++){
+                if ( newText.value.indexOf(pseudoTags[i]) != -1 ){
+                    newText.value = newText.value.replace(pseudoTags[i], htmlTags[i]);
+                    console.log(pseudoTags[i]);
+                    console.log(htmlTags[i]);
+                }
+            }
+            console.log(newText.value);
+            let title_prev = document.getElementById("title_prev");
+            let content_prev = document.getElementById("content_prev");
+            
+            title_prev.innerHTML = title.value;
+            content_prev.innerHTML = newText.value;
+            //tab2.innerHTML += newText.value;
+           
+        }
+        
+    </script>
+
+   
+    
+    
+{% endblock content %}

@@ -5,16 +5,19 @@
 
 {% block content %}
 
-
+{% load editor %}
 <div class="post-title-container">
     <span class="post-title">
-        #{{ current_post.id }} {{ current_post.title }}
+        #{{ current_post.id }} {{ current_post.title|transform }}
     </span>
 </div>
 
 <div class="post-content-container pcc-home">
     <div class="post-content">
-        <p>{{ current_post.content }}</p>
+        <!-- <p>{{ current_post.content }}</p> -->
+        <p>
+            {{ current_post.content|transform }}
+        </p>
     </div>
 
 </div>
