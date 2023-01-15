@@ -7,8 +7,10 @@ from .forms import PostForm
 
 def home(request):
     current_post = Post.objects.last()
-    return render(request, "posts/home.html", {"current_post": current_post})
+    return render(request, "blog/home.html", {"current_post": current_post})
 
+def about(request):
+    return render(request, "blog/about.html")
 def dashboard(request):
     return render(request, "posts/dashboard.html")
 
@@ -39,7 +41,7 @@ def editor(request, id_or_new):
         return render(request, "posts/editor.html", { "form": formGet, "arg": id_or_new})
 
 
-def  read_post(request, idp):
+def read_post(request, idp):
     current_post = Post.objects.filter(id=idp)[0]
     return render(request, "posts/home.html", {"current_post": current_post})
 
@@ -63,6 +65,6 @@ def list_posts(request):
         page = 1
     posts = paginator.get_page(page)
     return render(
-        request, "posts/posts.html",
+        request, "blog/posts.html",
         {"posts_list": posts, "is_search": is_search}
         )

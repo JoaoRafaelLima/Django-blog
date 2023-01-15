@@ -54,7 +54,9 @@ nav{
 .item-link:hover{
     border-bottom: 4px solid #b6b7ba;
 }
-
+.item-link-active{
+    border-bottom: 4px solid #b6b7ba;
+}
 .open-nav{
     display: none;
     background: #b6b7ba;

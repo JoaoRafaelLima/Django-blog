@@ -2,6 +2,24 @@
 
 {% block title %}Posts{% endblock title %}
 
+{% block menu %}
+<nav>
+    <ul class="menu" id="ml">
+        <li class="menu-item">
+            <a class="item-link" href="{% url 'blog:home' %}">Home</a>
+        </li>
+        <li class="menu-item">
+            <a class="item-link item-link-active" href="{% url 'blog:posts' %}">Posts</a>
+        </li>
+        <li class="menu-item">
+            <a class="item-link" href="{% url 'blog:about' %}">Sobre</a>
+        </li>
+    </ul>
+   
+</nav>
+
+{% endblock menu %}
+
 {% block content %}
 
 
