@@ -5,6 +5,9 @@ from .models import Post
 from .forms import PostForm
 # Create your views here.
 
+def home(request):
+    current_post = Post.objects.last()
+    return render(request, "posts/home.html", {"current_post": current_post})
 
 def dashboard(request):
     return render(request, "posts/dashboard.html")
@@ -35,11 +38,6 @@ def editor(request, id_or_new):
 
         return render(request, "posts/editor.html", { "form": formGet, "arg": id_or_new})
 
-def home(request):
-    current_post = Post.objects.all().order_by('-created_at')[0]
-    print("post current")
-
-    return render(request, "posts/home.html", {"current_post": current_post})
 
 def  read_post(request, idp):
     current_post = Post.objects.filter(id=idp)[0]
